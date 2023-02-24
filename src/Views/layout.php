@@ -21,30 +21,48 @@
             </div>
             <?php
             if (!isset($_SESSION["user"]["username"])) {
-            ?>
+                ?>
                 <div class="hoverLink">
                     <a href="/login" class="icon"><i class="fas fa-user-tie"></i></a>
                     <p class="hidden">Login</p>
                 </div>
-            <?php
+                <?php
             } else {
-
-            ?>
+                if ($_SESSION["user"]["permissions"] == 1) {
+                    ?>
+                    <div class="hoverLink">
+                        <a href="/dashboard/backoffice" class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></a>
+                        <p class="hidden">ajout un item</p>
+                    </div>
+                    <div class="hoverLink">
+                        <a href="/dashboard/backoffice/update" class="icon"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <p class="hidden">modification un item</p>
+                    </div>
+                    <div class="hoverLink">
+                        <a href="/dashboard/backoffice/supp" class="icon"><i class=" fa-solid fa-trash" id="white"></i></a>
+                        <p class="hidden">supprimez un item</p>
+                    </div>
+                    <?php
+                }
+                ?>
 
                 <div class="hoverLink">
                     <a href="/dashboard/nouveau" class="icon"><i class="fa-solid fa-bars"></i></a>
                     <p class="hidden">Menu</p>
                 </div>
                 <div class="hoverLink">
-                    <a href="/dashboard" class="icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="/dashboard/panier" class="icon"><i class="fa-solid fa-cart-shopping"></i></a>
                     <p class="hidden">panier</p>
                 </div>
-
+                <div class="hoverLink">
+                    <a href="/dashboard/historique" class="icon"><i class="fa-solid fa-clock-rotate-left"></i></a>
+                    <p class="hidden">Historique</p>
+                </div>
                 <div class="hoverLink">
                     <a href="/logout" class="icon"><i class="fas fa-power-off"></i></a>
                     <p class="hidden">Logout</p>
                 </div>
-            <?php
+                <?php
             }
             ?>
         </nav>

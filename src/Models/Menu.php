@@ -2,181 +2,199 @@
 namespace Panier\Models;
 
 /** Class Panier **/
-class Menu{
+class Menu
+{
 
     private $NOMORIGINE;
     private $IDORIGINE;
     private $NOMINGREDIENT;
     private $IDINGREDIENT;
-    private $formateurTab = [];
-    private $ID_FORMATEUR;
-    private $PRENOM_FORMATEUR;
-    private $NOM_FORMATEUR;
-    private $LIBELLE;
-    private $IdDuFormateur;
-    private $lastid;
-    private $PRENOM;
-    private $NOM;
-    private $persone;
-    private $NOMFORM;
-    private $DATE_DEBUT;
-    private $DATE_FIN;
-    private $salle;
+    private $NOMPRODUIT;
+    private $EXT;
+    private $PRIXPRODUIT;
+    private $POIDSPRODUIT;
+    private $IDCATEGORIE;
+    private $NOMCATEGORIE;
+    private $IDTYPE;
+    private $NOMTYPE;
+    private $IDPRODUIT;
+    private $INGREDIENTTAB = [];
+    private $PLAT = [];
+    private $QUANTITE;
+    private $IDCOMMANDE;
+    private $IDUSER;
+    private $uniteDePoids;
+
+    private $DATE;
 
 
-    public function getNomOrigine() {
+    public function getNomOrigine()
+    {
         return $this->NOMORIGINE;
     }
 
-    public function getIdIngredient() {
+    public function getIdIngredient()
+    {
         return $this->IDINGREDIENT;
     }
-    public function getIdOrigine() {
+    public function getIdOrigine()
+    {
         return $this->IDORIGINE;
     }
-    public function getNomIngredient() {
+    public function getNomIngredient()
+    {
         return $this->NOMINGREDIENT;
     }
-    public function getIdFormateur() {
-        return $this->ID_FORMATEUR;
+    public function getNomProduit()
+    {
+        return $this->NOMPRODUIT;
     }
-    public function getPrenomFormateur() {
-        return $this->PRENOM_FORMATEUR;
+    public function getPrixProduit()
+    {
+        return $this->PRIXPRODUIT;
     }
-    public function getNomFormateur() {
-        return $this->NOM_FORMATEUR;
+    public function getPoidsProduit()
+    {
+        return $this->POIDSPRODUIT;
     }
-    public function getLibelle() {
-        return $this->LIBELLE;
+    public function getNomCategorie()
+    {
+        return $this->NOMCATEGORIE;
     }
-    public function getIdDuFormateur() {
-        return $this->IdDuFormateur;
+    public function getNomType()
+    {
+        return $this->NOMTYPE;
     }
-    public function getPersone() {
-        return $this->persone;
+    public function getIdProduit()
+    {
+        return $this->IDPRODUIT;
     }
-    // public function getDate() {
-    //     $date = date_create($this->date);
-    //     return date_format($date, 'd-m-Y');
-    //     //donne la date française si on veux la date americain suprimer le code si dessus et remplacer le par return $this->$date;
-    // }
-    public function getPrenom() {
-        return $this->PRENOM;
+    public function getIdType()
+    {
+        return $this->IDTYPE;
     }
-    public function getNom() {
-        return $this->NOM;
+    public function getExt()
+    {
+        return $this->EXT;
     }
-    public function getlastid() {
-        return $this->lastid;
+    public function getIdCategorie()
+    {
+        return $this->IDCATEGORIE;
+    }
+    public function getQuantite()
+    {
+        return $this->QUANTITE;
+    }
+    public function getIdCommande()
+    {
+        return $this->IDCOMMANDE;
+    }
+    public function getUniteDePoids()
+    {
+        return $this->uniteDePoids;
     }
 
-
-    public function getNOMFORM() {
-        return $this->NOMFORM;
+    public function getIdUser()
+    {
+        return $this->IDUSER;
     }
 
-    public function getDateDeb() {
-        $date = date_create($this->DATE_DEBUT);
+    public function getDate()
+    {
+        $date = date_create($this->DATE);
         return date_format($date, 'd/m/Y');
         //donne la date française si on veux la date americain suprimer le code si dessus et remplacer le par return $this->$date;
     }
-    public function getDateDebUS() {
-        $date = date_create($this->DATE_DEBUT);
-        return date_format($date, 'Y-m-d');;
-    }
-    public function getDateFin() {
-        $date = date_create($this->DATE_FIN);
-        return date_format($date, 'd/m/Y');
-        //donne la date française si on veux la date americain suprimer le code si dessus et remplacer le par return $this->$date;
-    }
-    public function getDateFinUS() {
-        $date = date_create($this->DATE_FIN);
-        return date_format($date, 'Y-m-d');
-    }
-    public function getSalle() {
-        return $this->salle;
-    }
 
-    public function setNomForm(String $NOMFORM) {
-        $this->NOMFORM = $NOMFORM;
+    public function setIdUser(string $IDUSER)
+    {
+        $this->IDUSER = $IDUSER;
     }
-    public function setDateDeb(String $DATE_DEBUT) {
-        $this->DATE_DEBUT = $DATE_DEBUT;
+    public function setDate(string $DATE)
+    {
+        $this->DATE = $DATE;
     }
-    public function setIdOrigine(String $IDORIGINE) {
+    public function setIdOrigine(string $IDORIGINE)
+    {
         $this->IDORIGINE = $IDORIGINE;
     }
-    public function setSalle(String $salle) {
-        $this->salle = $salle;
-    }
-    public function setNomOrigine(Int $NOMORIGINE) {
+    public function setNomOrigine(int $NOMORIGINE)
+    {
         $this->NOMORIGINE = $NOMORIGINE;
     }
 
-    public function setIdIngredient(String $IDINGREDIENT) {
+    public function setIdIngredient(string $IDINGREDIENT)
+    {
         $this->IDINGREDIENT = $IDINGREDIENT;
     }
-    public function setNomIngredient(String $NOMINGREDIENT) {
+    public function setNomIngredient(string $NOMINGREDIENT)
+    {
         $this->NOMINGREDIENT = $NOMINGREDIENT;
     }
-    // public function setForm(String $LIBELLE_FORM) {
-    //     $this->LIBELLE_FORM = $LIBELLE_FORM;
-    // }
-    // public function setDate(String $date) {
-    //     $this->date = $date;
-    // }
-    public function setIdFormateur(String $ID_FORMATEUR) {
-        $this->ID_FORMATEUR = $ID_FORMATEUR;
+    public function setNomProduit(string $NOMPRODUIT)
+    {
+        $this->NOMPRODUIT = $NOMPRODUIT;
     }
-    public function setPrenomFormateur(String $PRENOM_FORMATEUR) {
-        $this->PRENOM_FORMATEUR = $PRENOM_FORMATEUR;
+    public function setPrixProduit(string $PRIXPRODUIT)
+    {
+        $this->PRIXPRODUIT = $PRIXPRODUIT;
     }
-    public function setNomFormateur(String $NOM_FORMATEUR) {
-        $this->NOM_FORMATEUR = $NOM_FORMATEUR;
+    public function setPoidsProduit(string $POIDSPRODUIT)
+    {
+        $this->POIDSPRODUIT = $POIDSPRODUIT;
     }
-    public function setLibelle(String $LIBELLE) {
-        $this->LIBELLE = $LIBELLE;
+    public function setNomCategorie(string $NOMCATEGORIE)
+    {
+        $this->NOMCATEGORIE = $NOMCATEGORIE;
     }
-    public function setIdDuFormateur(String $IdDuFormateur) {
-        $this->IdDuFormateur = $IdDuFormateur;
+    public function setNomType(string $NOMTYPE)
+    {
+        $this->NOMTYPE = $NOMTYPE;
     }
-    public function setlastid(String $lastid) {
-        $this->lastid = $lastid;
+    public function setIdProduit(string $IDPRODUIT)
+    {
+        $this->IDPRODUIT = $IDPRODUIT;
     }
-    public function setPrenom(String $PRENOM) {
-        $this->LIBELLE = $PRENOM;
+    public function setExt(string $EXT)
+    {
+        $this->EXT = $EXT;
     }
-    public function setNom(String $NOM) {
-        $this->NOM = $NOM;
+    public function setIdType(string $IDTYPE)
+    {
+        $this->IDTYPE = $IDTYPE;
     }
-    public function setPersone(String $persone) {
-        $this->persone = $persone;
+    public function setIdCategorie(string $IDCATEGORIE)
+    {
+        $this->IDCATEGORIE = $IDCATEGORIE;
     }
-    public function formateur()
+    public function setQuantite(string $QUANTITE)
+    {
+        $this->QUANTITE = $QUANTITE;
+    }
+    public function setIdCommande(string $IDCOMMANDE)
+    {
+        $this->IDCOMMANDE = $IDCOMMANDE;
+    }
+    public function setUniteDePoids(string $uniteDePoids)
+    {
+        $this->uniteDePoids = $uniteDePoids;
+    }
+    public function plat()
     {
         $manager = new MenuManager();
-        if (!$this->formateurTab) {
-            $this->formateurTab = $manager->getAllFormateur2($this->getIdFormateur());
+        if (!$this->PLAT) {
+            $this->PLAT = $manager->find();
         }
 
-        return $this->formateurTab;
+        return $this->PLAT;
     }
-    public function getAll()
+    public function allIngredient($id)
     {
         $manager = new MenuManager();
-        if (!$this->formateurTab) {
-            $this->formateurTab = $manager->getAll();
+        if (!$this->INGREDIENTTAB) {
+            $this->INGREDIENTTAB = $manager->AllIngredients($id);
         }
 
-        return $this->formateurTab;
-    }
-    public function allForm()
-    {
-        $manager = new MenuManager();
-        if (!$this->formateurTab) {
-            $this->formateurTab = $manager->allForm($this->getPersone());
-        }
-
-        return $this->formateurTab;
+        return $this->INGREDIENTTAB;
     }
 }

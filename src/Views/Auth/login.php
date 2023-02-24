@@ -10,18 +10,24 @@ ob_start();
     <div class="blockInput">
       <div class="labelInput">
         <label for="username"><i class="fas fa-user-tie"></i></label>
-        <input type="text" name="username" value="<?php echo old("username");?>" placeholder="code client">
+        <input type="text" id="username" name="username" value="<?php echo old("username"); ?>"
+          placeholder="code client">
       </div>
-      <span class="error"><?php echo error("username");?></span>
+      <span class="error">
+        <?php echo error("username"); ?>
+      </span>
     </div>
 
     <div class="blockInput">
       <div class="labelInput">
-        <label for="password"><i class="fas fa-key"></i></label>
-        <input id="inputPassword" class="inputPassword" type="password" name="password" value="<?php echo old("password");?>" placeholder="password">
+        <label for="inputPassword"><i class="fas fa-key"></i></label>
+        <input id="inputPassword" class="inputPassword" type="password" name="password"
+          value="<?php echo old("password"); ?>" placeholder="password">
         <button id="btnPassword" class="viewPassword" type="button" name="button"><i class="far fa-eye"></i></button>
       </div>
-      <span class="error"><?php echo error("password");?></span>
+      <span class="error">
+        <?php echo error("password"); ?>
+      </span>
     </div>
 
     <button type="submit" name="button">S'identifier</button>
@@ -30,18 +36,26 @@ ob_start();
   <div class="more">
     <p>Vous n'avez pas de compte ? <a href="/register">Inscrivez-vous !</a></p>
   </div>
+  <p class="error">
+    <?php
+    if (isset($_SESSION['error']["name"])) {
+      echo $_SESSION['error']["name"];
+    }
+    ?>
+  </p>
 </section>
 
 <script>
-var btnPass = document.getElementById("btnPassword");
-var inputPass = document.getElementById("inputPassword");
-btnPass.onclick = function() {
+  var btnPass = document.getElementById("btnPassword");
+  var inputPass = document.getElementById("inputPassword");
+  btnPass.onclick = function () {
     if (inputPass.type === "password") {
-        inputPass.type = "text";
+      inputPass.type = "text";
     } else {
-        inputPass.type = "password";
+      inputPass.type = "password";
     }
-};
+    //fonction qui sert a changer le format du input password pour voire la valeur écrit dessus
+  };
 </script>
 
 <?php

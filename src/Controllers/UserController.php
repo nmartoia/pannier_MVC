@@ -6,20 +6,24 @@ use Panier\Models\UserManager;
 use Panier\Validator;
 
 /** Class UserController **/
-class UserController {
+class UserController
+{
     private $manager;
     private $validator;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->manager = new UserManager();
         $this->validator = new Validator();
     }
 
-    public function showLogin() {
+    public function showLogin()
+    {
         require VIEWS . 'Auth/login.php';
     }
 
-    public function showRegister() {
+    public function showRegister()
+    {
         require VIEWS . 'Auth/register.php';
     }
 
@@ -30,11 +34,12 @@ class UserController {
         header('Location: /login/');
     }
 
-    public function register() {
+    public function register()
+    {
         $this->validator->validate([
-            "username"=>["required", "min:6","max:6", "alphaNum"],
-            "password"=>["required", "min:6", "alphaNum", "confirm"],
-            "passwordConfirm"=>["required", "min:6", "alphaNum"]
+            "username" => ["required", "min:6", "max:6", "alphaNum"],
+            "password" => ["required", "min:6", "alphaNum", "confirm"],
+            "passwordConfirm" => ["required", "min:6", "alphaNum"]
         ]);
         $_SESSION['old'] = $_POST;
 
@@ -42,12 +47,14 @@ class UserController {
             $res = $this->manager->find($_POST["username"]);
 
             if (empty($res)) {
+                $uuid = uniqid();
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $this->manager->store($password);
+                $this->manager->store($password, $uuid);
 
                 $_SESSION["user"] = [
-                    "id" => $this->manager->getBdd()->lastInsertId(),
-                    "username" => $_POST["username"]
+                    "id" => $uuid,
+                    "username" => $_POST["username"],
+                    "permissions" => 0
                 ];
                 header("Location: /");
             } else {
@@ -59,10 +66,11 @@ class UserController {
         }
     }
 
-    public function login() {
+    public function login()
+    {
         $this->validator->validate([
-            "username"=>["required", "min:6","max:6", "alphaNum"],
-            "password"=>["required", "min:6", "alphaNum"]
+            "username" => ["required", "min:6", "max:6", "alphaNum"],
+            "password" => ["required", "min:6", "alphaNum"]
         ]);
 
         $_SESSION['old'] = $_POST;
@@ -73,7 +81,8 @@ class UserController {
             if ($res && password_verify($_POST['password'], $res->getPassword())) {
                 $_SESSION["user"] = [
                     "id" => $res->getId(),
-                    "username" => $res->getCode_client()
+                    "username" => $res->getCode_client(),
+                    "permissions" => $res->getPermissions()
                 ];
                 header("Location: /");
             } else {
